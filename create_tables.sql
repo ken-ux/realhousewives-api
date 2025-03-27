@@ -3,7 +3,7 @@ CREATE TABLE
     series (
         series_id TEXT PRIMARY KEY,
         title TEXT NOT NULL,
-        city TEXT NOT NULL,
+        "location" TEXT NOT NULL, -- LOCATION is listed as a reserved word for some databases.
         premiere_date DATE NOT NULL
     );
 
