@@ -1,4 +1,3 @@
--- START HERE
 CREATE TABLE
     series (
         series_id TEXT PRIMARY KEY,
