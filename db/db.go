@@ -17,7 +17,11 @@ func Init() error {
 	if dbpool_err != nil {
 		return fmt.Errorf("unable to create connection pool: %v", dbpool_err)
 	}
-	defer Pool.Close()
+	// defer Pool.Close()
 
 	return nil
+}
+
+func Close() {
+	Pool.Close()
 }
