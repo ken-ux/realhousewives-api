@@ -1,12 +1,39 @@
 package main
 
 import (
+	"log"
+	"os"
+
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	"github.com/ken-ux/realhousewives-api/api"
+	"github.com/ken-ux/realhousewives-api/db"
 )
 
 func main() {
+	// Load dev environment.
+	env := os.Getenv("ENV_NAME")
+	if env != "production" {
+		err := godotenv.Load()
+		if err != nil {
+			log.Fatal("error loading .env file")
+		}
+	}
+
+	// Connect to database.
+	err := db.Init()
+	if err != nil {
+		log.Fatalf("failed to initialize database: %s", err)
+		os.Exit(1)
+	}
+
+	// Create router.
 	r := gin.Default()
+
+	// Enable CORS policy with all origins allowed.
+	r.Use(cors.Default())
+
 	{
 		v1 := r.Group("/v1")
 
