@@ -44,8 +44,8 @@ func main() {
 		v1.GET("/series/:series_id", api.OneSeries)
 
 		// Seasons
-		v1.GET("/series/:series_id/seasons/all")
-		v1.GET("/series/:series_id/seasons/:season_number")
+		v1.GET("/series/:series_id/seasons/all", api.AllSeasons)
+		v1.GET("/series/:series_id/seasons/:season_number", api.OneSeason)
 
 		// Episodes
 		v1.GET("/series/:series_id/seasons/:season_number/episodes/all")
