@@ -19,4 +19,10 @@ type Season struct {
 	Finale_date   *time.Time `json:"finale_date"`
 }
 
-// omitempty
+type Episode struct {
+	Episode_id     int        `json:"-"`
+	Season_id      int        `json:"-"`
+	Episode_number int        `json:"episode_number"`
+	Episode_title  string     `json:"episode_title"`
+	Air_date       *time.Time `json:"air_date"`
+}

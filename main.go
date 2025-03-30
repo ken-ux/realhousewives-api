@@ -48,8 +48,8 @@ func main() {
 		v1.GET("/series/:series_id/seasons/:season_number", api.OneSeason)
 
 		// Episodes
-		v1.GET("/series/:series_id/seasons/:season_number/episodes/all")
-		v1.GET("/series/:series_id/seasons/:season_number/episodes/:episode_number")
+		v1.GET("/series/:series_id/seasons/:season_number/episodes/all", api.AllEpisodes)
+		v1.GET("/series/:series_id/seasons/:season_number/episodes/:episode_number", api.OneEpisode)
 
 		// Housewives
 		v1.GET("/housewives")
