@@ -3,9 +3,7 @@ package api
 import (
 	"fmt"
 	"net/http"
-
 	"strconv"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5"
@@ -14,8 +12,8 @@ import (
 )
 
 func AllSeasons(c *gin.Context) {
-	series_id := strings.ToUpper(c.Param("series_id"))
-	query := fmt.Sprintf(`SELECT * FROM seasons WHERE series_id = '%v'`, series_id)
+	series_id := c.Param("series_id")
+	query := fmt.Sprintf(`SELECT * FROM seasons WHERE UPPER(series_id) = UPPER('%s')`, series_id)
 
 	data, err := querySeasons(c, query)
 	if err != nil {
@@ -27,13 +25,13 @@ func AllSeasons(c *gin.Context) {
 }
 
 func OneSeason(c *gin.Context) {
-	series_id := strings.ToUpper(c.Param("series_id"))
+	series_id := c.Param("series_id")
 	season_number, err := strconv.Atoi(c.Param("season_number"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, "unable to query seasons: non-number input for season number")
 		return
 	}
-	query := fmt.Sprintf(`SELECT * FROM seasons WHERE series_id = '%s' AND season_number = %d`, series_id, season_number)
+	query := fmt.Sprintf(`SELECT * FROM seasons WHERE UPPER(series_id) = UPPER('%s') AND season_number = %d`, series_id, season_number)
 
 	data, err := querySeasons(c, query)
 	if err != nil {

@@ -3,7 +3,6 @@ package api
 import (
 	"fmt"
 	"net/http"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5"
@@ -24,8 +23,8 @@ func AllSeries(c *gin.Context) {
 }
 
 func OneSeries(c *gin.Context) {
-	series_id := strings.ToUpper(c.Param("series_id"))
-	query := fmt.Sprintf(`SELECT * FROM series WHERE series_id = '%s'`, series_id)
+	series_id := c.Param("series_id")
+	query := fmt.Sprintf(`SELECT * FROM series WHERE UPPER(series_id) = UPPER('%s')`, series_id)
 
 	data, err := querySeries(c, query)
 
