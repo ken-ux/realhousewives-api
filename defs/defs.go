@@ -34,3 +34,11 @@ type Housewife struct {
 	Birth_date   *time.Time `json:"birth_date"`
 	Image_url    string     `json:"image_url"`
 }
+
+type Quote struct {
+	Housewife_id int    `json:"housewife_id"`
+	First_name   string `json:"first_name"`
+	Last_name    string `json:"last_name"`
+	Content      string `json:"content"`
+	Tagline      bool   `json:"tagline"`
+}

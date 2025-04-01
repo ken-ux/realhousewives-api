@@ -56,8 +56,8 @@ func main() {
 		v1.GET("/housewives/:housewife_id", api.OneHousewife)
 
 		// Quotes
-		v1.GET("/housewives/all/quotes")
-		v1.GET("/housewives/:housewife_id/quotes")
+		v1.GET("/housewives/all/quotes", api.AllQuotes)
+		v1.GET("/housewives/:housewife_id/quotes", api.FilteredQuotes)
 	}
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
