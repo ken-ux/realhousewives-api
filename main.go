@@ -52,9 +52,8 @@ func main() {
 		v1.GET("/series/:series_id/seasons/:season_number/episodes/:episode_number", api.OneEpisode)
 
 		// Housewives
-		v1.GET("/housewives")
-		v1.GET("/housewives/all")
-		v1.GET("/housewives/:housewife_id")
+		v1.GET("/housewives/all", api.AllHousewives)
+		v1.GET("/housewives/:housewife_id", api.OneHousewife)
 
 		// Quotes
 		v1.GET("/housewives/all/quotes")

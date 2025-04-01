@@ -26,3 +26,11 @@ type Episode struct {
 	Episode_title  string     `json:"episode_title"`
 	Air_date       *time.Time `json:"air_date"`
 }
+
+type Housewife struct {
+	Housewife_id int        `json:"housewife_id"`
+	First_name   string     `json:"first_name"`
+	Last_name    string     `json:"last_name"`
+	Birth_date   *time.Time `json:"birth_date"`
+	Image_url    string     `json:"image_url"`
+}
