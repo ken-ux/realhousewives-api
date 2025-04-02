@@ -73,7 +73,7 @@ func createComplexQueryString(c *gin.Context) string {
 func OneHousewife(c *gin.Context) {
 	housewife_id, err := strconv.Atoi(c.Param("housewife_id"))
 	if err != nil {
-		c.Error(err)
+		c.Error(fmt.Errorf("non-integer input"))
 		return
 	}
 	query := fmt.Sprintf(`SELECT * FROM housewives WHERE housewife_id = '%d'`, housewife_id)

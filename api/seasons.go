@@ -28,7 +28,7 @@ func OneSeason(c *gin.Context) {
 	series_id := c.Param("series_id")
 	season_number, err := strconv.Atoi(c.Param("season_number"))
 	if err != nil {
-		c.Error(err)
+		c.Error(fmt.Errorf("non-integer input"))
 		return
 	}
 	query := fmt.Sprintf(`SELECT * FROM seasons WHERE UPPER(series_id) = UPPER('%s') AND season_number = %d`, series_id, season_number)
