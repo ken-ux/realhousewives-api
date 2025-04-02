@@ -9,6 +9,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/ken-ux/realhousewives-api/api"
 	"github.com/ken-ux/realhousewives-api/db"
+	"github.com/ken-ux/realhousewives-api/middleware"
 )
 
 func main() {
@@ -35,6 +36,7 @@ func main() {
 
 	// Enable CORS policy with all origins allowed.
 	r.Use(cors.Default())
+	r.Use(middleware.RateLimiterMiddleware())
 
 	{
 		v1 := r.Group("/v1")

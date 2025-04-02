@@ -9,6 +9,7 @@ require (
 	github.com/gin-gonic/gin v1.10.0
 	github.com/jackc/pgx/v5 v5.7.4
 	github.com/joho/godotenv v1.5.1
+	golang.org/x/time v0.11.0
 )
 
 require (
