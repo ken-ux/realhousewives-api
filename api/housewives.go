@@ -25,7 +25,7 @@ func AllHousewives(c *gin.Context) {
 
 	data, err := queryHousewives(c, query)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("unable to query housewives: %v", err))
+		c.Error(err)
 		return
 	}
 
@@ -73,14 +73,14 @@ func createComplexQueryString(c *gin.Context) string {
 func OneHousewife(c *gin.Context) {
 	housewife_id, err := strconv.Atoi(c.Param("housewife_id"))
 	if err != nil {
-		c.JSON(http.StatusBadRequest, "unable to query housewife: non-number input for housewife id")
+		c.Error(err)
 		return
 	}
 	query := fmt.Sprintf(`SELECT * FROM housewives WHERE housewife_id = '%d'`, housewife_id)
 
 	data, err := queryHousewives(c, query)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("unable to query housewives: %v", err))
+		c.Error(err)
 		return
 	}
 

@@ -15,7 +15,7 @@ func AllEpisodes(c *gin.Context) {
 	series_id := c.Param("series_id")
 	season_number, err := strconv.Atoi(c.Param("season_number"))
 	if err != nil {
-		c.JSON(http.StatusBadRequest, "unable to query seasons: non-number input for season number")
+		c.Error(err)
 		return
 	}
 	query := fmt.Sprintf(
@@ -31,7 +31,7 @@ func AllEpisodes(c *gin.Context) {
 
 	data, err := queryEpisodes(c, query)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("unable to query episodes: %v", err))
+		c.Error(err)
 		return
 	}
 
@@ -42,13 +42,13 @@ func OneEpisode(c *gin.Context) {
 	series_id := c.Param("series_id")
 	season_number, err := strconv.Atoi(c.Param("season_number"))
 	if err != nil {
-		c.JSON(http.StatusBadRequest, "unable to query seasons: non-number input for season number")
+		c.Error(err)
 		return
 	}
 
 	episode_number, err := strconv.Atoi(c.Param("episode_number"))
 	if err != nil {
-		c.JSON(http.StatusBadRequest, "unable to query seasons: non-number input for episode number")
+		c.Error(err)
 		return
 	}
 
@@ -66,7 +66,7 @@ func OneEpisode(c *gin.Context) {
 
 	data, err := queryEpisodes(c, query)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("unable to query episodes: %v", err))
+		c.Error(err)
 		return
 	}
 

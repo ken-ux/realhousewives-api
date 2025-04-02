@@ -21,14 +21,14 @@ func AllQuotes(c *gin.Context) {
 	if len(c.Request.URL.Query()) > 0 {
 		err := parseQueryStrings(c, &query)
 		if err != nil {
-			c.JSON(http.StatusBadRequest, fmt.Sprintf("unable to query quotes: %v", err))
+			c.Error(err)
 			return
 		}
 	}
 
 	data, err := queryQuotes(c, query)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("unable to query quotes: %v", err))
+		c.Error(err)
 		return
 	}
 
@@ -38,7 +38,7 @@ func AllQuotes(c *gin.Context) {
 func FilteredQuotes(c *gin.Context) {
 	housewife_id, err := strconv.Atoi(c.Param("housewife_id"))
 	if err != nil {
-		c.JSON(http.StatusBadRequest, "unable to query quotes: non-number input for housewife id")
+		c.Error(err)
 		return
 	}
 
@@ -50,14 +50,14 @@ func FilteredQuotes(c *gin.Context) {
 	if len(c.Request.URL.Query()) > 0 {
 		err := parseQueryStrings(c, &query)
 		if err != nil {
-			c.JSON(http.StatusBadRequest, fmt.Sprintf("unable to query quotes: %v", err))
+			c.Error(err)
 			return
 		}
 	}
 
 	data, err := queryQuotes(c, query)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("unable to query quotes: %v", err))
+		c.Error(err)
 		return
 	}
 

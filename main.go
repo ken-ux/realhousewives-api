@@ -36,6 +36,9 @@ func main() {
 
 	// Enable CORS policy with all origins allowed.
 	r.Use(cors.Default())
+
+	// Use middleware for error handling and rate limiting.
+	r.Use(middleware.ErrorHandler())
 	r.Use(middleware.RateLimiterMiddleware())
 
 	{

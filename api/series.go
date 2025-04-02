@@ -15,7 +15,7 @@ func AllSeries(c *gin.Context) {
 	data, err := querySeries(c, query)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("unable to query series: %v", err))
+		c.Error(err)
 		return
 	}
 
@@ -29,7 +29,7 @@ func OneSeries(c *gin.Context) {
 	data, err := querySeries(c, query)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("unable to query series: %v", err))
+		c.Error(err)
 		return
 	}
 

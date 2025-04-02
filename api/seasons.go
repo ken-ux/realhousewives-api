@@ -17,7 +17,7 @@ func AllSeasons(c *gin.Context) {
 
 	data, err := querySeasons(c, query)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("unable to query seasons: %v", err))
+		c.Error(err)
 		return
 	}
 
@@ -28,14 +28,14 @@ func OneSeason(c *gin.Context) {
 	series_id := c.Param("series_id")
 	season_number, err := strconv.Atoi(c.Param("season_number"))
 	if err != nil {
-		c.JSON(http.StatusBadRequest, "unable to query seasons: non-number input for season number")
+		c.Error(err)
 		return
 	}
 	query := fmt.Sprintf(`SELECT * FROM seasons WHERE UPPER(series_id) = UPPER('%s') AND season_number = %d`, series_id, season_number)
 
 	data, err := querySeasons(c, query)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, fmt.Sprintf("unable to query seasons: %v", err))
+		c.Error(err)
 		return
 	}
 

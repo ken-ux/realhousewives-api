@@ -27,3 +27,15 @@ func RateLimiterMiddleware() gin.HandlerFunc {
 		c.Next()
 	}
 }
+
+// Handles errors and provide consistent response format
+func ErrorHandler() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Next()
+
+		if len(c.Errors) > 0 {
+			err := c.Errors.Last()
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		}
+	}
+}
