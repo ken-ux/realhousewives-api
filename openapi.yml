@@ -112,7 +112,6 @@ paths:
           required: true
           schema:
             type: integer
-            format: int64
       responses:
         "200":
           description: OK
@@ -147,7 +146,6 @@ paths:
           required: true
           schema:
             type: integer
-            format: int64
       responses:
         "200":
           description: OK
@@ -182,14 +180,12 @@ paths:
           required: true
           schema:
             type: integer
-            format: int64
         - name: episode_number
           in: path
           description: Episode number to return
           required: true
           schema:
             type: integer
-            format: int64
       responses:
         "200":
           description: OK
@@ -258,7 +254,6 @@ paths:
           required: true
           schema:
             type: integer
-            format: int64
       responses:
         "200":
           description: OK
@@ -283,13 +278,13 @@ paths:
       parameters:
         - name: tagline
           in: query
-          description: Return quotes that are taglines used in episode openings
+          description: Return taglines used in episode openings
           required: false
           schema:
             type: boolean
         - name: random
           in: query
-          description: Return a randomized quote
+          description: Return a random quote
           required: false
           schema:
             type: boolean
@@ -321,7 +316,6 @@ paths:
           required: true
           schema:
             type: integer
-            format: int64
       responses:
         "200":
           description: OK
@@ -354,6 +348,7 @@ components:
         premiere_date:
           type: string
           format: date-time
+          examples: ["2010-10-14T00:00:00Z"]
     Season:
       type: object
       properties:
@@ -362,20 +357,20 @@ components:
           examples: ["RHOBH"]
         season_number:
           type: integer
-          format: int64
           examples: [1]
         premiere_date:
           type: string
           format: date-time
+          examples: ["2010-10-14T00:00:00Z"]
         finale_date:
           type: string
           format: date-time
+          examples: ["2011-02-15T00:00:00Z"]
     Episode:
       type: object
       properties:
         episode_number:
           type: integer
-          format: int64
           examples: [1]
         episode_title:
           type: string
@@ -383,12 +378,12 @@ components:
         air_date:
           type: string
           format: date-time
+          examples: ["2010-10-14T00:00:00Z"]
     Housewife:
       type: object
       properties:
         housewife_id:
           type: integer
-          format: int64
           examples: [1]
         first_name:
           type: string
@@ -408,7 +403,6 @@ components:
       properties:
         housewife_id:
           type: integer
-          format: int64
           examples: [1]
         first_name:
           type: string
