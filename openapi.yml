@@ -1,0 +1,431 @@
+openapi: "3.1.1"
+info:
+  title: Real Housewives API
+  version: "1.0"
+servers:
+  - url: https://api.server.test/v1
+tags:
+  - name: series
+    description: Operations about series
+  - name: seasons
+    description: Operations about seasons
+  - name: episodes
+    description: Operations about episodes
+  - name: housewives
+    description: Operations about housewives
+  - name: quotes
+    description: Operations about quotes
+paths:
+  /series/all:
+    get:
+      tags:
+        - series
+      summary: Retrieves all series.
+      description: Returns list of all series in the franchise.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Series"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /series/{series_id}:
+    get:
+      tags:
+        - series
+      summary: Retrieves one series.
+      description: Returns a series using its acronym as the identifier.
+      parameters:
+        - name: series_id
+          in: path
+          description: Acronym for series to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Series"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /series/{series_id}/seasons/all:
+    get:
+      tags:
+        - seasons
+      summary: Retrieves all seasons.
+      description: Returns list of all seasons for a series.
+      parameters:
+        - name: series_id
+          in: path
+          description: Acronym for series to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Season"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /series/{series_id}/seasons/{season_number}:
+    get:
+      tags:
+        - seasons
+      summary: Retrieves one season.
+      description: Returns a season for a series using the season number.
+      parameters:
+        - name: series_id
+          in: path
+          description: Acronym for series to return
+          required: true
+          schema:
+            type: string
+        - name: season_number
+          in: path
+          description: Season number to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Season"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /series/{series_id}/seasons/{season_number}/episodes/all:
+    get:
+      tags:
+        - episodes
+      summary: Retrieves all episodes.
+      description: Returns list of all episodes in a season.
+      parameters:
+        - name: series_id
+          in: path
+          description: Acronym for series to return
+          required: true
+          schema:
+            type: string
+        - name: season_number
+          in: path
+          description: Season number to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Episode"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /series/{series_id}/seasons/{season_number}/episodes/{episode_number}:
+    get:
+      tags:
+        - episodes
+      summary: Retrieves one episode.
+      description: Returns an episode in a season.
+      parameters:
+        - name: series_id
+          in: path
+          description: Acronym for series to return
+          required: true
+          schema:
+            type: string
+        - name: season_number
+          in: path
+          description: Season number to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: episode_number
+          in: path
+          description: Episode number to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Episode"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /housewives/all:
+    get:
+      tags:
+        - housewives
+      summary: Retrieve all housewives.
+      description: Returns a list of all housewives. Can be further filtered using query string parameters.
+      parameters:
+        - name: first_name
+          in: query
+          description: First name of housewife
+          required: false
+          schema:
+            type: string
+        - name: last_name
+          in: query
+          description: Last name of housewife
+          required: false
+          schema:
+            type: string
+        - name: series
+          in: query
+          description: Acronym for series the housewife is featured in
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Housewife"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /housewives/{housewife_id}:
+    get:
+      tags:
+        - housewives
+      summary: Retrieves one housewife.
+      description: Returns a housewife.
+      parameters:
+        - name: housewife_id
+          in: path
+          description: Id of housewife to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Housewife"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /housewives/all/quotes:
+    get:
+      tags:
+        - quotes
+      summary: Retrieves quotes from all housewives.
+      description: Returns a list of all quotes from all housewives. Can be further filtered using query string parameters.
+      parameters:
+        - name: tagline
+          in: query
+          description: Return quotes that are taglines used in episode openings
+          required: false
+          schema:
+            type: boolean
+        - name: random
+          in: query
+          description: Return a randomized quote
+          required: false
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Quote"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /housewives/{housewife_id}/quotes:
+    get:
+      tags:
+        - quotes
+      summary: Retrieves quotes from one housewife.
+      description: Returns a list of all quotes from a housewife. Can be further filtered using query string parameters.
+      parameters:
+        - name: housewife_id
+          in: path
+          description: Id of housewife to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Quote"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Series:
+      type: object
+      properties:
+        series_id:
+          type: string
+          examples: ["RHOBH"]
+        title:
+          type: string
+          examples: ["Real Housewives of Beverly Hills"]
+        location:
+          type: string
+          examples: ["California"]
+        premiere_date:
+          type: string
+          format: date-time
+    Season:
+      type: object
+      properties:
+        series_id:
+          type: string
+          examples: ["RHOBH"]
+        season_number:
+          type: integer
+          format: int64
+          examples: [1]
+        premiere_date:
+          type: string
+          format: date-time
+        finale_date:
+          type: string
+          format: date-time
+    Episode:
+      type: object
+      properties:
+        episode_number:
+          type: integer
+          format: int64
+          examples: [1]
+        episode_title:
+          type: string
+          examples: ["Life, Liberty and the Pursuit of Wealthiness"]
+        air_date:
+          type: string
+          format: date-time
+    Housewife:
+      type: object
+      properties:
+        housewife_id:
+          type: integer
+          format: int64
+          examples: [1]
+        first_name:
+          type: string
+          examples: ["Kyle"]
+        last_name:
+          type: string
+          examples: ["Richards"]
+        birth_date:
+          type: string
+          format: date-time
+          examples: ["1969-01-11T00:00:00Z"]
+        image_url:
+          type: string
+          examples: ["example.com/image.jpg"]
+    Quote:
+      type: object
+      properties:
+        housewife_id:
+          type: integer
+          format: int64
+          examples: [1]
+        first_name:
+          type: string
+          examples: ["Kyle"]
+        last_name:
+          type: string
+          examples: ["Richards"]
+        content:
+          type: string
+          examples: ["In a town full of phonies, I'm not afraid to be me."]
+        tagline:
+          type: boolean
+          example: [true]
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
