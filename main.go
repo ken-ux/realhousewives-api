@@ -9,6 +9,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/ken-ux/realhousewives-api/api"
 	"github.com/ken-ux/realhousewives-api/db"
+	"github.com/ken-ux/realhousewives-api/docs"
 	"github.com/ken-ux/realhousewives-api/middleware"
 )
 
@@ -43,6 +44,9 @@ func main() {
 
 	{
 		v1 := r.Group("/v1")
+
+		// Reference
+		v1.GET("/reference", docs.Reference)
 
 		// Series
 		v1.GET("/series/all", api.AllSeries)
