@@ -14,6 +14,7 @@ func Reference(c *gin.Context) {
 			PageTitle: "The Real Housewives API",
 		},
 		DarkMode: true,
+		Theme:    scalar.ThemeKepler,
 	})
 
 	if err != nil {
