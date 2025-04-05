@@ -44,11 +44,11 @@ func main() {
 
 	r.Static("/assets", "./assets")
 
+	// Reference
+	r.GET("/", docs.Reference)
+
 	{
 		v1 := r.Group("/v1")
-
-		// Reference
-		v1.GET("/reference", docs.Reference)
 
 		// Series
 		v1.GET("/series/all", api.AllSeries)
