@@ -16,7 +16,7 @@ info:
     ## Disclaimer
     This API is not affiliated, associated, authorized, endorsed by, or in any way officially connected with NBCUniversal, or any of its subsidiaries or affiliates.
 servers:
-  - url: https://api.server.test/v1
+  - url: https://realhousewives-api.up.railway.app/v1
 tags:
   - name: series
     description: Operations about series
