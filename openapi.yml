@@ -2,6 +2,19 @@ openapi: "3.1.1"
 info:
   title: Real Housewives API
   version: "1.0"
+  description: |
+    ![The Real Housewives logo](/assets/logo.svg)
+
+    This public API retrieves information about the series, seasons, and iconic housewives of [*The Real Housewives*](https://en.wikipedia.org/wiki/The_Real_Housewives) franchise.
+
+    There is currently **no** key required to use this API, but there is a **rate limit per IP**. It is capped at about 1 request per second.
+
+    > [!warning]
+    > This is a work in progress, so certain series or housewives may not appear yet.
+    > If you find any issues or have a quote to contribute, submit your feedback [here](https://docs.google.com/forms/d/e/1FAIpQLSdJcWJGPZL61dHBvPinXfcj7hVP8KZ9J_tccxsOD5aLJieCig/viewform?usp=dialog)!
+
+    ## Disclaimer
+    This API is not affiliated, associated, authorized, endorsed by, or in any way officially connected with NBCUniversal, or any of its subsidiaries or affiliates.
 servers:
   - url: https://api.server.test/v1
 tags:
