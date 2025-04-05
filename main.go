@@ -42,6 +42,8 @@ func main() {
 	r.Use(middleware.ErrorHandler())
 	r.Use(middleware.RateLimiterMiddleware())
 
+	r.Static("/assets", "./assets")
+
 	{
 		v1 := r.Group("/v1")
 
