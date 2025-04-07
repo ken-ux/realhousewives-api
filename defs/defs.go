@@ -32,7 +32,7 @@ type Housewife struct {
 	First_name   string     `json:"first_name"`
 	Last_name    string     `json:"last_name"`
 	Birth_date   *time.Time `json:"birth_date"`
-	Image_url    string     `json:"image_url"`
+	Image_url    *string    `json:"image_url"`
 }
 
 type Quote struct {
