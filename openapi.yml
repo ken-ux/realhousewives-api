@@ -409,7 +409,7 @@ components:
           format: date-time
           examples: ["1969-01-11T00:00:00Z"]
         image_url:
-          type: string
+          type: ["string", "null"]
           examples: ["example.com/image.jpg"]
     Quote:
       type: object
