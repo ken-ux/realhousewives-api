@@ -22,32 +22,8 @@ INSERT INTO
         finale_date
     )
 VALUES
-    (
-        (
-            SELECT
-                series_id
-            FROM
-                series
-            WHERE
-                series_id = 'RHOBH'
-        ),
-        1,
-        '2010-10-14',
-        '2011-02-15'
-    ),
-    (
-        (
-            SELECT
-                series_id
-            FROM
-                series
-            WHERE
-                series_id = 'RHOA'
-        ),
-        1,
-        '2008-10-07',
-        '2008-11-25'
-    );
+    ('RHOBH', 1, '2010-10-14', '2011-02-15'),
+    ('RHOA', 1, '2008-10-07', '2008-11-25');
 
 INSERT INTO
     episodes (
