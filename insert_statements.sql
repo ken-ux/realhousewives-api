@@ -40,7 +40,7 @@ VALUES
             FROM
                 seasons
             WHERE
-                series_id = 'RHOBH'
+                series_id = 'RHOBH' AND season_number = 1
         ),
         1,
         'Life, Liberty and the Pursuit of Wealthiness',
@@ -53,7 +53,7 @@ VALUES
             FROM
                 seasons
             WHERE
-                series_id = 'RHOA'
+                series_id = 'RHOA' AND season_number = 1
         ),
         1,
         'Welcome One, Welcome ATL',
