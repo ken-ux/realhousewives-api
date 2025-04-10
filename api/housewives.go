@@ -41,7 +41,7 @@ func createComplexQueryString(c *gin.Context) string {
 
 	// Replace initial SQL string if a series is specified since it requires multiple JOINs
 	if series != "" {
-		query = fmt.Sprintf(`SELECT t1.* FROM housewives t1
+		query = fmt.Sprintf(`SELECT DISTINCT t1.* FROM housewives t1
 				LEFT JOIN seasons_housewife t2 ON t1.housewife_id = t2.housewife_id
 				LEFT JOIN seasons t3 ON t2.season_id = t3.season_id
 				LEFT JOIN series t4 on t3.series_id = t4.series_id
